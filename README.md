@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="images/avatar.jpg" alt="周艺舟" width="120" style="border-radius: 50%;">
+
 # 周艺舟 · Yizhou Zhou
 
 **华东师范大学 教育学博士研究生 · 斓舟科技创始人 · AI × Education**
