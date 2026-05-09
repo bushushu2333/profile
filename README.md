@@ -26,10 +26,11 @@
 
 我的工作横跨**学术研究**和**产品工程**两界：设计教学框架、做课堂实验、写论文，然后把研究成果变成能用的软件产品。
 
-- 🎓 博士在读 · **华东师范大学** · 智能教育方向
-- 🎓 理学硕士 · **新加坡国立大学 (NUS)** · 计算机科学
+- 🎓 博士在读 · **华东师范大学** · 智能教育方向（上海人工智能实验室联合培养）
+- 🎓 工学硕士 · **新加坡国立大学 (NUS)** · 机械工程
+- 🎓 学士 · **北京科技大学 & 新加坡国立大学苏州研究院** · 联合培养
 - 🏢 创始人 · **斓舟科技** · AI 教育产品
-- 🔬 研究方向：大模型内生智能教学系统 (LLM-Native ITS) · 定量民族志 (ENA) · 生产性失败 (PF) 教学法
+- 🔬 研究方向：大模型教育应用 · 教育大模型 · 教育智能体 · 人工智能课程 · 智能体开发平台 · 智能体协作社会学
 
 ---
 
@@ -38,7 +39,7 @@
 - **ECNUClaw：大模型内生智能教学系统框架** — 技术报告 (arXiv, 2025)。集成多智能体编排、自适应教学策略和实时认知网络分析的全栈框架。[论文 →](https://arxiv.org/abs/2505.06162) | [代码 →](https://github.com/bushushu2333/ECNUClaw)
 - **Slide2Text：课件自动转教材系统** — 已完成课堂实验，正在投稿 *ETS* 和 *IEEE TLT* (2025)。将课程幻灯片自动转化为结构化教材内容，并加入教学增强模块。
 - **Bounded Agency in AI Tutoring Systems** — 在修 *IEEE TLT*。研究学习者自主性如何调节 AI 辅导系统的教学效果。
-- 参与国家级教育大模型重点研究项目（经费 200 万+）。
+- 参与国家级教育大模型重点研究项目。
 
 ---
 
@@ -117,10 +118,11 @@ I'm **Yizhou Zhou**, a PhD student at **East China Normal University** studying 
 
 My work sits at the intersection of **academic research** and **product engineering**: I design pedagogical frameworks, run classroom experiments, write papers, and then build the software to make it real.
 
-- 🎓 PhD in Education (Smart Education) @ **East China Normal University**
-- 🎓 MSc in Computer Science (AI focus) @ **National University of Singapore**
+- 🎓 PhD in Education (Smart Education) @ **East China Normal University** (Joint training with Shanghai AI Laboratory)
+- 🎓 ME in Mechanical Engineering @ **National University of Singapore**
+- 🎓 BE @ **University of Science and Technology Beijing & NUS Suzhou Research Institute** (Joint program)
 - 🏢 Founder @ **斓舟科技** — AI-powered education products
-- 🔬 Research: LLM-Native ITS · Quantitative Ethnography (ENA) · Productive Failure (PF)
+- 🔬 Research: LLM Applications in Education · Educational LLMs · Educational Agents · AI Curriculum · Agent Development Platforms · Agent Collaborative Sociology
 
 ---
 
@@ -129,7 +131,7 @@ My work sits at the intersection of **academic research** and **product engineer
 - **ECNUClaw: An LLM-Native Intelligent Tutoring System Framework** — Technical report (arXiv, 2025). A full-stack framework integrating multi-agent orchestration, adaptive teaching strategies, and real-time epistemic network analysis. [Paper →](https://arxiv.org/abs/2505.06162) | [Code →](https://github.com/bushushu2333/ECNUClaw)
 - **Slide2Text: Automated Course-to-Textbook Transformation** — Classroom experiments completed; submitting to *ETS* and *IEEE TLT* (2025). A system that converts slide-based lectures into structured textbook chapters with pedagogical enhancements.
 - **Bounded Agency in AI Tutoring Systems** — In revision for *IEEE TLT*. Investigating how learner agency mediates the effectiveness of AI-driven tutoring interactions.
-- Participated in **national key research projects** on educational large language models (￥2M+ funding).
+- Participated in **national key research projects** on educational large language models.
 
 ---
 
