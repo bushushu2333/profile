@@ -50,11 +50,10 @@
 | 产品 | 简介 | 状态 |
 |------|------|------|
 | **LeBot World** | 儿童AI智能体平台 — 孩子可以创建和交互安全、有教育意义的 AI 角色 | v3.0 运营中 |
-| **星聚小镇 StarVille** | AI 智能体社区平台 — 协作学习与社交互动 | v1.0 运营中 |
+| **Ailebot 机器人** | AI 教育陪伴机器人 | 开发中 |
 | **CityLingo** | 智能英语学习平台 — 自适应内容生成 | v1.2 开发中 |
 | **Slide2Text** | 课件转教材 — 自动将 PPT 生成结构化教材 | 实验阶段 |
-| **葭鸢 AI Office** | AI 数字员工办公室 — 企业咨询演示 | v2.4 运营中 |
-| **双轨道AI陪伴成长师** | 儿童AI陪伴产品 — 像素风格 MVP | 重构中 |
+| **葭鸢 AI** | AI 数字员工办公室 — 企业咨询演示 | v2.4 运营中 |
 
 **开源项目**
 
@@ -142,11 +141,10 @@ My work sits at the intersection of **academic research** and **product engineer
 | Product | Description | Status |
 |---------|-------------|--------|
 | **LeBot World** | Children's AI agent platform — kids create and interact with safe, educational AI characters | v3.0 Live |
-| **StarVille** | AI agent community platform for collaborative learning and social interaction | v1.0 Live |
+| **Ailebot Robot** | AI educational companion robot | In Dev |
 | **CityLingo** | Intelligent English learning platform with adaptive content generation | v1.2 In Dev |
 | **Slide2Text** | Converts course slides into structured textbook content | In Research |
-| **葭鸢 AI Office** | AI-powered virtual employee office for enterprise consulting demos | v2.4 Live |
-| **Dual-Track AI Companion** | Children's AI companion product — pixel-art style MVP | Restructuring |
+| **葭鸢 AI** | AI-powered virtual employee office for enterprise consulting demos | v2.4 Live |
 
 **Open Source**
 
