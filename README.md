@@ -88,16 +88,6 @@
 
 ---
 
-### 📊 GitHub 统计
-
-<div align="center">
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=bushushu2333&show_icons=true&theme=default&hide_border=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=bushushu2333&layout=compact&theme=default&hide_border=true)
-
-</div>
-
 ---
 
 <div align="center">
@@ -179,29 +169,10 @@ My work sits at the intersection of **academic research** and **product engineer
 
 ---
 
-### 📊 GitHub Stats
-
-<div align="center">
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=bushushu2333&show_icons=true&theme=default&hide_border=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=bushushu2333&layout=compact&theme=default&hide_border=true)
-
-</div>
-
 ---
 
 <div align="center">
 
 **Contact** · [zhouyizhou25@gmail.com](mailto:zhouyizhou25@gmail.com) · [zhouyizhou25@stu.ecnu.edu.cn](mailto:zhouyizhou25@stu.ecnu.edu.cn) · [e1010686@u.nus.edu](mailto:e1010686@u.nus.edu)
-
-</div>
-
----
-
-<div align="center">
-
-> 给岁月以文明，而不是给文明以岁月。
-> *— 刘慈欣《三体》*
 
 </div>
