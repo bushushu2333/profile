@@ -1,405 +1,1096 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>个人简历</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周艺舟 · Yizhou Zhou</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2332;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #38bdf8;
+            --accent-2: #818cf8;
+            --accent-3: #f472b6;
+            --border: #1e293b;
+            --gradient-1: linear-gradient(135deg, #38bdf8, #818cf8);
+            --gradient-2: linear-gradient(135deg, #818cf8, #f472b6);
+            --gradient-3: linear-gradient(135deg, #f472b6, #fb923c);
         }
 
-        body{
-            padding: 100px 6%;
-            background: linear-gradient(to right top, #ff1493, #2980b9);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--bg-primary);
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(129, 140, 248, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(244, 114, 182, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10, 15, 26, 0.8);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        nav .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 56px;
         }
 
-        .profile {
-            padding: 20px 30px;
-            height: 230px;
-            background: #FFFFFF;
-            text-align: center;
-            flex: 1 1 400px;
-            position: sticky;
-            top: 20px;
-            border-right: 2px solid #333333;
+        nav .logo {
+            font-weight: 700;
+            font-size: 16px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .profile h3 {
-            font-size: 20px;
+        nav .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
         }
 
-        .profile p {
-            color: #2980b9;
-            margin-bottom: 16px;
-            font-size: 15px;
-        }
-
-        .btn {
-            padding: 7px 20px;
-            border-radius: 5px;
-            background: #2980b9;
-            color: #FFFFFF;
-            font-size: 17px;
+        nav .nav-links a {
+            color: var(--text-secondary);
             text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
         }
 
-        .btn:hover {
-            background: #333333;
-        }
+        nav .nav-links a:hover { color: var(--accent); }
 
-        .information {
-            padding: 20px 30px;
-            flex: 1 1 1000px;
-            background: #FFFFFF; 
-        }
-
-        .title {
-            font-size: 25px;
-            color: #2980b9;
-            margin-bottom: 15px;
-        }
-
-        .about p {
-            font-size: 17px;
-            line-height: 2;
-            padding-bottom: 10px;
-            color: #777777;
-        }
-
-        .about .box-container {
+        .lang-toggle {
             display: flex;
+            gap: 4px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 3px;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            padding: 4px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 28px;
+            border-radius: 50%;
+            padding: 3px;
+            background: var(--gradient-1);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); }
+            to { box-shadow: 0 0 40px rgba(129, 140, 248, 0.3); }
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 28px;
+        }
+
+        .hero .subtitle span {
+            color: var(--text-muted);
+            margin: 0 6px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .about .box-container .box {
-            flex: 1 1 250px;
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.25s ease;
         }
 
-        .about .box-container .box h3 {
+        .social-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .social-links a svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+
+        /* About cards */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.08);
+        }
+
+        .about-card .icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .about-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .about-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Research items */
+        .research-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 14px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .research-item:hover {
+            border-left-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+
+        .research-item h3 {
             font-size: 15px;
-            padding: 10px 0;
-            color: #333333;
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
-        .about .box-container .box h3 span {
-            color: #777777;
+        .research-item h3 .venue {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
         }
 
-        .services {
-            padding: 20px 0;
+        .research-item p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
-        .imgbox-container {
+        .research-item .links {
+            margin-top: 8px;
             display: flex;
+            gap: 12px;
         }
 
-        .imgbox-container .box {
-            flex: 1 1 17px;
-            text-align: center;
-            border-radius: 5px;
-            padding: 20px;
-            background: #eeeeee;
-            margin-right: 12px;
+        .research-item .links a {
+            font-size: 12px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
         }
 
-        .imgbox-container .box img {
-            height: 50px;
+        .research-item .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Product cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(56, 189, 248, 0.1);
+        }
+
+        .product-card:hover::before { opacity: 1; }
+
+        .product-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .product-card.featured img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-card .product-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .product-card .product-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
             margin-bottom: 10px;
         }
 
-        .imgbox-container .box h3 {
-            font-size: 15px;
-            color: #777777;
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
         }
 
-        .skills .box-container {
-            display: flex;
-            flex-wrap: wrap;
+        .status-badge.live {
+            background: rgba(52, 211, 153, 0.1);
+            color: #34d399;
         }
 
-        .skills .box-container .box {
-            flex: 1 1 300px;
+        .status-badge.dev {
+            background: rgba(251, 191, 36, 0.1);
+            color: #fbbf24;
         }
 
-        .skills .box-container .box:last-child {
-            margin-left: 12px;
+        .status-badge.research {
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--accent-2);
         }
 
-        .progress h3 {
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            color: #333333;
-            font-size: 15px;
+        /* Open source */
+        .oss-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
         }
 
-        .progress h3 span {
-            color: #777777;
+        @media (max-width: 640px) {
+            .oss-grid { grid-template-columns: 1fr; }
         }
 
-        .bar {
-            overflow: hidden;
-            border-radius: 50px;
-            height: 10px;
-            background: #eeeeee;
-        }
-
-        .bar span {
-            background: #2980b9;
-            height: 100%;
-            display: block;
-            border-radius: 50px;
-        }
-
-        .first {
-            width: 95%;
-        }
-
-        .second {
-            width: 80%;
-        }
-
-        .third {
-            width: 65%;
-        }
-
-        .fourth {
-            width: 70%;
-        }
-
-        .fifth {
-            width: 90%;
-        }
-
-        .sixth {
-            width: 75%;
-        }
-
-        .experience {
-            margin: 20px 0;
-        }
-
-        .experience .box-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .experience .box-container .box {
+        .oss-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
             padding: 20px;
-            border-radius: 5px;
-            flex: 1 1 350px;
-            background: #eeeeee;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: block;
         }
 
-        .experience .box-container .box span {
-            color: #2980b9;
-            font-size: 15px;
+        .oss-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
         }
 
-        .experience .box-container .box h3 {
-            color: #333333;
-            font-size: 17px;
-            padding: 5px 0;
+        .oss-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--accent);
         }
 
-        .experience .box-container .box p {
-            color: #777777;
-            line-height: 2;
-            font-size: 13px;
+        .oss-card p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
-        .contact .box-container {
+        /* Tech stack */
+        .tech-grid {
             display: flex;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .contact .box-container .box {
-            flex: 1 1 200px;
-            display: flex;
+        .tech-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s;
         }
 
-        .contact .box-container .box i {
-            height: 40px;
-            width: 40px;
-            line-height: 40px;
-            font-size: 15px;
+        .tech-tag:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* Activities timeline */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 24px;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: #2980b9;
-            color: #FFFFFF;
-            text-align: center;
-            margin-top: 14px;
+            background: var(--accent);
+            border: 2px solid var(--bg-primary);
         }
 
-        .contact .box-container .box h3 {
-            font-size: 17px;
-            color: #333333;
-            padding-bottom: 5px;
+        .timeline-item .time {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        .contact .box-container .box p {
+        .timeline-item h4 {
             font-size: 14px;
-            color: #777777;
-            line-height: 2;
+            font-weight: 600;
+            margin-bottom: 2px;
         }
 
-        .info {
-            padding-left: 10px;
+        .timeline-item p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Contact footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer .emails {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        footer .emails a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        footer .emails a:hover { color: var(--accent); }
+
+        footer .copyright {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hide language sections */
+        .lang-zh, .lang-en { display: none; }
+        body.lang-zh .lang-zh { display: block; }
+        body.lang-en .lang-en { display: block; }
+        body.lang-zh .lang-zh-inline { display: inline; }
+        body.lang-en .lang-en-inline { display: inline; }
+        .lang-zh-inline, .lang-en-inline { display: none; }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            nav .nav-links { display: none; }
+            .hero { padding-top: 100px; }
+            .product-card.featured {
+                grid-template-columns: 1fr;
+            }
+            .product-card.featured img {
+                max-width: 200px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
+<body class="lang-zh">
 
-<body>
-    <div class="container">
+<div class="bg-grid"></div>
 
-        <div class="profile">
-            <img src="http://nocturne.bczcdn.com/file/1645597751069_39196/head.png" alt="">
-            <h3>Algo</h3>
-            <p>前端开发</p>
-            <div class="buttons">
-                <a class="btn" href="http://nocturne.bczcdn.com/audio/1647325026464_87789/小夜简历3.0.pdf" target="_blank">下载简历</a>
-                <a class="btn" href="javascript:alert('发送成功');">发送面试邀请</a>
-            </div>
-        </div>
-
-        <div class="information">
-
-            <div class="about">
-                <h3 class="title">About Me</h3>
-                <p>我叫Algo，小名是小夜，擅长Python，精通爬虫，可视化，数据分析，人工智能等领域。</p>
-                <p>不仅如此，我还能熟练使用前端语言独立制作电商网站，招聘网站等等，这个简历也是我用HTML和CSS完成的哦。</p>
-                <div class="box-container">
-                    <div class="box">
-                        <h3><span>年龄 : </span>20</h3>
-                        <h3><span>地址 : </span>四川，成都</h3>
-                        <h3><span>电话 : </span>1234567890</h3>
-                        <h3><span>邮箱 : </span>Algo@Yequ.Com</h3>
-                    </div>
-                    <div class="box">
-                        <h3><span>求职 : </span>Web Design</h3>
-                        <h3><span>语言 : </span>Hindi, English</h3>
-                        <h3><span>工龄 : </span>2 年</h3>
-                        <h3><span>现状 : </span>随时到岗</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="services">
-                <h3 class="title">My Services</h3>
-                <div class="imgbox-container">
-                    <div class="box">
-                        <img src="http://nocturne.bczcdn.com/file/1645598211806_42022/icon-1.png" alt="">
-                        <h3>HTML 5</h3>
-                    </div>
-                    <div class="box">
-                        <img src="http://nocturne.bczcdn.com/file/1645598216656_89057/icon-2.png" alt="">
-                        <h3>CSS 3</h3>
-                    </div>
-                    <div class="box">
-                        <img src="http://nocturne.bczcdn.com/file/1645598219832_4197/icon-3.png" alt="">
-                        <h3>JavaScript</h3>
-                    </div>
-                    <div class="box">
-                        <img src="http://nocturne.bczcdn.com/file/1645598223509_63268/icon-4.png" alt="">
-                        <h3>Python</h3>
-                    </div>
-                    <div class="box">
-                        <img src="http://nocturne.bczcdn.com/file/1645598226940_86454/icon-5.png" alt="">
-                        <h3>SQL</h3>
-                    </div>
-                    <div class="box">
-                        <img src="http://nocturne.bczcdn.com/file/1645598230253_49248/icon-6.png" alt="">
-                        <h3>C++</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skills">
-                <h3 class="title">My Skills</h3>
-                <div class="box-container">
-                    <div class="box">
-                        <div class="progress">
-                            <h3>Html <span>95%</span></h3>
-                            <div class="bar"><span class="first"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>Css <span>80%</span></h3>
-                            <div class="bar"><span class="second"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>Javascript <span>65%</span></h3>
-                            <div class="bar"><span class="third"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>Photoshop <span>70%</span></h3>
-                            <div class="bar"><span class="fourth"></span></div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="progress">
-                            <h3>Web Design <span>90%</span></h3>
-                            <div class="bar"><span class="fifth"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>Graphic Design <span>75%</span></h3>
-                            <div class="bar"><span class="sixth"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>App Design <span>65%</span></h3>
-                            <div class="bar"><span class="third"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>Digital Marketing <span>70%</span></h3>
-                            <div class="bar"><span class="fourth"></span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="experience">
-                <h3 class="title">My Experience</h3>
-                <div class="box-container">
-                    <div class="box">
-                        <span>2020 - 2022</span>
-                        <h3>前端工程师</h3>
-                        <p>主要负责夜曲优选前端页面开发、适配。</p>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact">
-                <h3 class="title">Contact Info</h3>
-                <div class="box-container">
-                    <div class="box">
-                        <i class="fas fa-map"></i>
-                        <div class="info">
-                            <h3>微信</h3>
-                            <p>Yequbiancheng</p>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <i class="fas fa-phone"></i>
-                        <div class="info">
-                            <h3>My Number</h3>
-                            <p>1234567890</p>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <i class="fas fa-envelope"></i>
-                        <div class="info">
-                            <h3>My Email</h3>
-                            <p>Algo@Yequ.Com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Nav -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo">YZ</div>
+        <ul class="nav-links">
+            <li><a href="#about" class="lang-zh-inline">关于</a><a href="#about" class="lang-en-inline">About</a></li>
+            <li><a href="#research" class="lang-zh-inline">研究</a><a href="#research" class="lang-en-inline">Research</a></li>
+            <li><a href="#products" class="lang-zh-inline">产品</a><a href="#products" class="lang-en-inline">Products</a></li>
+            <li><a href="#contact" class="lang-zh-inline">联系</a><a href="#contact" class="lang-en-inline">Contact</a></li>
+        </ul>
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('zh')">中</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
     </div>
-</body>
+</nav>
 
+<div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="avatar-wrapper">
+            <img src="images/avatar.jpg" alt="周艺舟">
+        </div>
+        <h1>
+            <span class="lang-zh-inline">周艺舟</span>
+            <span class="lang-en-inline">Yizhou Zhou</span>
+            <span class="highlight">&middot;</span>
+            <span class="lang-zh-inline">Yizhou</span>
+            <span class="lang-en-inline">Joey</span>
+        </h1>
+        <p class="subtitle">
+            <span class="lang-zh-inline">华东师范大学 博士研究生 · 斓舟科技 创始人</span>
+            <span class="lang-en-inline">PhD Researcher @ ECNU &middot; Founder @ LanBoat Tech</span>
+        </p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/yizhou-zhou-269a3922a/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://scholar.google.com.sg/citations?user=5lIfGFcAAAAJ&hl=zh-CN" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+                Google Scholar
+            </a>
+            <a href="https://orcid.org/0009-0008-7818-7967" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378a.815.815 0 110 1.63.815.815 0 010-1.63zm-.579 3.199h1.159v8.845H6.79V7.577zm3.873 0h3.13c2.972 0 4.781 2.032 4.781 4.423 0 2.39-1.809 4.422-4.781 4.422h-3.13V7.577zm1.159 1.004v6.837h1.971c2.382 0 3.593-1.579 3.593-3.418 0-1.84-1.211-3.419-3.593-3.419h-1.971z"/></svg>
+                ORCID
+            </a>
+            <a href="https://github.com/bushushu2333" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                GitHub
+            </a>
+            <a href="mailto:zhouyizhou25@gmail.com">
+                <svg viewBox="0 0 24 24"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg>
+                Email
+            </a>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+        <div class="fade-in">
+            <div class="section-label">
+                <span class="lang-zh-inline">背景</span>
+                <span class="lang-en-inline">Background</span>
+            </div>
+            <h2 class="section-title">
+                <span class="lang-zh-inline">关于我</span>
+                <span class="lang-en-inline">About Me</span>
+            </h2>
+        </div>
+        <div class="about-grid fade-in">
+            <div class="about-card">
+                <div class="icon">🎓</div>
+                <h3>
+                    <span class="lang-zh-inline">华东师范大学 · 博士</span>
+                    <span class="lang-en-inline">East China Normal University · PhD</span>
+                </h3>
+                <p>
+                    <span class="lang-zh-inline">教育学 · 智能教育方向（上海人工智能实验室联合培养）</span>
+                    <span class="lang-en-inline">Education · Smart Education (Joint training with Shanghai AI Lab)</span>
+                </p>
+            </div>
+            <div class="about-card">
+                <div class="icon">🎓</div>
+                <h3>
+                    <span class="lang-zh-inline">新加坡国立大学 · 硕士</span>
+                    <span class="lang-en-inline">NUS · Master</span>
+                </h3>
+                <p>
+                    <span class="lang-zh-inline">工学硕士 · 机械工程</span>
+                    <span class="lang-en-inline">ME in Mechanical Engineering</span>
+                </p>
+            </div>
+            <div class="about-card">
+                <div class="icon">🎓</div>
+                <h3>
+                    <span class="lang-zh-inline">北京科技大学 & NUS苏州研究院 · 学士</span>
+                    <span class="lang-en-inline">USTB & NUS Suzhou · Bachelor</span>
+                </h3>
+                <p>
+                    <span class="lang-zh-inline">联合培养</span>
+                    <span class="lang-en-inline">Joint Program</span>
+                </p>
+            </div>
+            <div class="about-card">
+                <div class="icon">🏢</div>
+                <h3>
+                    <span class="lang-zh-inline">斓舟科技 · 创始人</span>
+                    <span class="lang-en-inline">LanBoat Tech · Founder</span>
+                </h3>
+                <p>
+                    <span class="lang-zh-inline">AI 教育产品研发与落地</span>
+                    <span class="lang-en-inline">AI-powered education products</span>
+                </p>
+            </div>
+        </div>
+        <div class="fade-in" style="margin-top: 24px;">
+            <p style="font-size: 14px; color: var(--text-secondary); max-width: 600px;">
+                <span class="lang-zh-inline">
+                    <strong style="color: var(--text-primary);">研究方向：</strong>大模型教育应用 · 教育大模型 · 教育智能体 · 人工智能课程 · 智能体开发平台 · 智能体协作社会学
+                </span>
+                <span class="lang-en-inline">
+                    <strong style="color: var(--text-primary);">Research:</strong> LLM Applications in Education · Educational LLMs · Educational Agents · AI Curriculum · Agent Development Platforms · Agent Collaborative Sociology
+                </span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+        <div class="fade-in">
+            <div class="section-label">
+                <span class="lang-zh-inline">学术</span>
+                <span class="lang-en-inline">Academic</span>
+            </div>
+            <h2 class="section-title">
+                <span class="lang-zh-inline">研究与论文</span>
+                <span class="lang-en-inline">Research & Publications</span>
+            </h2>
+        </div>
+
+        <div class="research-item fade-in">
+            <h3>
+                <span class="lang-zh-inline">ECNUClaw：大模型内生智能教学系统框架</span>
+                <span class="lang-en-inline">ECNUClaw: An LLM-Native ITS Framework</span>
+                <span class="venue">arXiv 2025</span>
+            </h3>
+            <p>
+                <span class="lang-zh-inline">集成多智能体编排、自适应教学策略和实时认知网络分析的全栈框架。</span>
+                <span class="lang-en-inline">A full-stack framework integrating multi-agent orchestration, adaptive teaching strategies, and real-time epistemic network analysis.</span>
+            </p>
+            <div class="links">
+                <a href="https://arxiv.org/abs/2505.06162" target="_blank">
+                    <span class="lang-zh-inline">论文 →</span><span class="lang-en-inline">Paper →</span>
+                </a>
+                <a href="https://github.com/bushushu2333/ECNUClaw" target="_blank">
+                    <span class="lang-zh-inline">代码 →</span><span class="lang-en-inline">Code →</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="research-item fade-in">
+            <h3>
+                <span class="lang-zh-inline">Slide2Text：课件自动转教材系统</span>
+                <span class="lang-en-inline">Slide2Text: Automated Course-to-Textbook Transformation</span>
+                <span class="venue">
+                    <span class="lang-zh-inline">投稿中</span><span class="lang-en-inline">Submitted</span>
+                </span>
+            </h3>
+            <p>
+                <span class="lang-zh-inline">将课程幻灯片自动转化为结构化教材内容，并加入教学增强模块。已完成课堂实验，正在投稿 ETS 和 IEEE TLT。</span>
+                <span class="lang-en-inline">Converts slide-based lectures into structured textbook chapters with pedagogical enhancements. Submitting to ETS and IEEE TLT.</span>
+            </p>
+        </div>
+
+        <div class="research-item fade-in">
+            <h3>
+                <span class="lang-zh-inline">Bounded Agency in AI Tutoring Systems</span>
+                <span class="venue">
+                    <span class="lang-zh-inline">在修 IEEE TLT</span><span class="lang-en-inline">In revision · IEEE TLT</span>
+                </span>
+            </h3>
+            <p>
+                <span class="lang-zh-inline">研究学习者自主性如何调节 AI 辅导系统的教学效果。</span>
+                <span class="lang-en-inline">Investigating how learner agency mediates the effectiveness of AI-driven tutoring interactions.</span>
+            </p>
+        </div>
+
+        <div class="research-item fade-in">
+            <h3>
+                <span class="lang-zh-inline">国家级教育大模型重点研究项目</span>
+                <span class="lang-en-inline">National Key Research on Educational LLMs</span>
+            </h3>
+            <p>
+                <span class="lang-zh-inline">参与国家级教育大模型重点研究项目。</span>
+                <span class="lang-en-inline">Participated in national key research projects on educational large language models.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+        <div class="fade-in">
+            <div class="section-label">
+                <span class="lang-zh-inline">产品</span>
+                <span class="lang-en-inline">Products</span>
+            </div>
+            <h2 class="section-title">
+                <span class="lang-zh-inline">创业产品</span>
+                <span class="lang-en-inline">Products & Projects</span>
+            </h2>
+        </div>
+
+        <div class="products-grid fade-in">
+            <!-- Ailebot Featured -->
+            <div class="product-card featured">
+                <img src="images/ailebot-robot.jpg" alt="Ailebot">
+                <div>
+                    <div class="product-name">
+                        <span class="lang-zh-inline">Ailebot 斓舟乐伴机器人</span>
+                        <span class="lang-en-inline">Ailebot Robot</span>
+                    </div>
+                    <div class="product-desc">
+                        <span class="lang-zh-inline">AI 教育陪伴机器人</span>
+                        <span class="lang-en-inline">AI educational companion robot</span>
+                    </div>
+                    <span class="status-badge live">
+                        <span class="lang-zh-inline">已上市</span><span class="lang-en-inline">Available</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">LeBot World</div>
+                <div class="product-desc">
+                    <span class="lang-zh-inline">儿童AI智能体平台 — 孩子可以创建和交互安全、有教育意义的 AI 角色</span>
+                    <span class="lang-en-inline">Children's AI agent platform — kids create and interact with safe, educational AI characters</span>
+                </div>
+                <span class="status-badge live">v3.0 Live</span>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">CityLingo</div>
+                <div class="product-desc">
+                    <span class="lang-zh-inline">智能英语学习平台 — 自适应内容生成</span>
+                    <span class="lang-en-inline">Intelligent English learning platform with adaptive content generation</span>
+                </div>
+                <span class="status-badge dev">v1.2
+                    <span class="lang-zh-inline">开发中</span><span class="lang-en-inline">In Dev</span>
+                </span>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">Slide2Text</div>
+                <div class="product-desc">
+                    <span class="lang-zh-inline">课件转教材 — 自动将 PPT 生成结构化教材</span>
+                    <span class="lang-en-inline">Converts course slides into structured textbook content</span>
+                </div>
+                <span class="status-badge research">
+                    <span class="lang-zh-inline">实验阶段</span><span class="lang-en-inline">In Research</span>
+                </span>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">
+                    <span class="lang-zh-inline">葭鸢 AI</span>
+                    <span class="lang-en-inline">葭鸢 AI</span>
+                </div>
+                <div class="product-desc">
+                    <span class="lang-zh-inline">AI 数字员工办公室 — 企业咨询演示</span>
+                    <span class="lang-en-inline">AI-powered virtual employee office for enterprise consulting demos</span>
+                </div>
+                <span class="status-badge live">v2.4 Live</span>
+            </div>
+        </div>
+
+        <!-- Open Source -->
+        <div class="fade-in" style="margin-top: 48px;">
+            <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">
+                <span class="lang-zh-inline">开源项目</span>
+                <span class="lang-en-inline">Open Source</span>
+            </h3>
+            <div class="oss-grid">
+                <a class="oss-card" href="https://github.com/bushushu2333/ECNUClaw" target="_blank">
+                    <h3>ECNUClaw</h3>
+                    <p>
+                        <span class="lang-zh-inline">LLM-native ITS 框架：多智能体编排 + 认知网络分析 + 自适应教学</span>
+                        <span class="lang-en-inline">LLM-native ITS framework: multi-agent orchestration + epistemic analysis + adaptive teaching</span>
+                    </p>
+                </a>
+                <a class="oss-card" href="https://github.com/bushushu2333/LebotClaw" target="_blank">
+                    <h3>LebotClaw</h3>
+                    <p>
+                        <span class="lang-zh-inline">轻量级教育 AI 智能体框架，驱动 LeBot World</span>
+                        <span class="lang-en-inline">Lightweight AI agent framework for education, powering LeBot World</span>
+                    </p>
+                </a>
+                <a class="oss-card" href="https://github.com/bushushu2333/Slide2Text" target="_blank">
+                    <h3>Slide2Text</h3>
+                    <p>
+                        <span class="lang-zh-inline">课件自动转教材，含教学策略重构模块</span>
+                        <span class="lang-en-inline">Automated slide-to-textbook conversion with pedagogical restructuring</span>
+                    </p>
+                </a>
+                <a class="oss-card" href="https://github.com/bushushu2333/santi-text-game" target="_blank">
+                    <h3>santi-text-game</h3>
+                    <p>
+                        <span class="lang-zh-inline">三体文字冒险游戏 — 基于《三体》的互动叙事，约 9 万字，5 种结局</span>
+                        <span class="lang-en-inline">Interactive text adventure based on Liu Cixin's The Three-Body Problem — ~90K characters, 5 endings</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities -->
+    <section id="activities">
+        <div class="fade-in">
+            <div class="section-label">
+                <span class="lang-zh-inline">活动</span>
+                <span class="lang-en-inline">Activities</span>
+            </div>
+            <h2 class="section-title">
+                <span class="lang-zh-inline">学术活动</span>
+                <span class="lang-en-inline">Academic Activities</span>
+            </h2>
+        </div>
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <div class="time">2024 ·
+                    <span class="lang-zh-inline">重庆</span><span class="lang-en-inline">Chongqing</span>
+                </div>
+                <h4>GCCCE 2024</h4>
+                <p>
+                    <span class="lang-zh-inline">组织「大语言模型教育应用」工作坊；发表论文；搭建工作坊网站</span>
+                    <span class="lang-en-inline">Organized LLM in Education workshop; presented paper; built workshop website</span>
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2024 ·
+                    <span class="lang-zh-inline">华东师大</span><span class="lang-en-inline">ECNU</span>
+                </div>
+                <h4>WAC 2024</h4>
+                <p>
+                    <span class="lang-zh-inline">联合组织教育分论坛，聚焦 AI 辅助学习</span>
+                    <span class="lang-en-inline">Co-organized education sub-forum on AI-assisted learning</span>
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2024 ·
+                    <span class="lang-zh-inline">线上</span><span class="lang-en-inline">Online</span>
+                </div>
+                <h4>GSAI 2024</h4>
+                <p>
+                    <span class="lang-zh-inline">报告多智能体 AI 教学系统研究</span>
+                    <span class="lang-en-inline">Presented research on multi-agent AI teaching systems</span>
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2024 ·
+                    <span class="lang-zh-inline">北京</span><span class="lang-en-inline">Beijing</span>
+                </div>
+                <h4>
+                    <span class="lang-zh-inline">中国大模型大会 CLM 2024</span>
+                    <span class="lang-en-inline">CLM 2024</span>
+                </h4>
+                <p>
+                    <span class="lang-zh-inline">参会</span>
+                    <span class="lang-en-inline">Attended</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+        <div class="fade-in">
+            <div class="section-label">
+                <span class="lang-zh-inline">技术</span>
+                <span class="lang-en-inline">Tech</span>
+            </div>
+            <h2 class="section-title">
+                <span class="lang-zh-inline">技术栈</span>
+                <span class="lang-en-inline">Tech Stack</span>
+            </h2>
+        </div>
+        <div class="tech-grid fade-in">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">LangChain</span>
+            <span class="tech-tag">LaTeX</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">
+                <span class="lang-zh-inline">大模型应用开发</span>
+                <span class="lang-en-inline">LLM App Dev</span>
+            </span>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="contact">
+    <div class="container">
+        <div class="fade-in">
+            <div class="section-label" style="justify-content: center;">
+                <span class="lang-zh-inline">联系</span>
+                <span class="lang-en-inline">Contact</span>
+            </div>
+            <div class="emails">
+                <a href="mailto:zhouyizhou25@gmail.com">zhouyizhou25@gmail.com</a>
+                <a href="mailto:zhouyizhou25@stu.ecnu.edu.cn">zhouyizhou25@stu.ecnu.edu.cn</a>
+                <a href="mailto:e1010686@u.nus.edu">e1010686@u.nus.edu</a>
+            </div>
+            <p class="copyright">
+                <span class="lang-zh-inline">&copy; 2025 周艺舟 · 用 AI 和热爱构建未来教育</span>
+                <span class="lang-en-inline">&copy; 2025 Yizhou Zhou · Building the future of education with AI & passion</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.lang-btn.' + (lang === 'zh' ? 'first-child' : 'last-child'));
+    event.target.classList.add('active');
+    localStorage.setItem('lang', lang);
+}
+
+// Restore language preference
+const savedLang = localStorage.getItem('lang');
+if (savedLang) {
+    document.body.className = 'lang-' + savedLang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.lang-btn')[savedLang === 'zh' ? 0 : 1].classList.add('active');
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
 </html>
