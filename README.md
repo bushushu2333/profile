@@ -50,10 +50,14 @@
 | 产品 | 简介 | 状态 |
 |------|------|------|
 | **LeBot World** | 儿童AI智能体平台 — 孩子可以创建和交互安全、有教育意义的 AI 角色 | v3.0 运营中 |
-| **Ailebot 机器人** | AI 教育陪伴机器人 | 开发中 |
+| **Ailebot 斓舟乐伴机器人** | AI 教育陪伴机器人 | 已上市 |
 | **CityLingo** | 智能英语学习平台 — 自适应内容生成 | v1.2 开发中 |
 | **Slide2Text** | 课件转教材 — 自动将 PPT 生成结构化教材 | 实验阶段 |
 | **葭鸢 AI** | AI 数字员工办公室 — 企业咨询演示 | v2.4 运营中 |
+
+<div align="center">
+<img src="images/ailebot-robot.jpg" alt="Ailebot 斓舟乐伴机器人" width="300">
+</div>
 
 **开源项目**
 
@@ -131,10 +135,14 @@ My work sits at the intersection of **academic research** and **product engineer
 | Product | Description | Status |
 |---------|-------------|--------|
 | **LeBot World** | Children's AI agent platform — kids create and interact with safe, educational AI characters | v3.0 Live |
-| **Ailebot Robot** | AI educational companion robot | In Dev |
+| **Ailebot Robot** | AI educational companion robot | Available |
 | **CityLingo** | Intelligent English learning platform with adaptive content generation | v1.2 In Dev |
 | **Slide2Text** | Converts course slides into structured textbook content | In Research |
 | **葭鸢 AI** | AI-powered virtual employee office for enterprise consulting demos | v2.4 Live |
+
+<div align="center">
+<img src="images/ailebot-robot.jpg" alt="Ailebot Robot" width="300">
+</div>
 
 **Open Source**
 
