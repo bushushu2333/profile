@@ -74,6 +74,7 @@
 
 ### 🎓 学术活动
 
+- **首届"新兴科技与未来人才"联合论坛**（香港教育大学，2025年5月）— 哈佛大学、斯坦福大学、香港教育大学联合主办；参与平行论坛，汇报科研方向
 - **GCCCE 2024**（重庆）— 组织「大语言模型教育应用」工作坊；发表论文；搭建工作坊网站
 - **WAC 2024**（华东师大）— 联合组织教育分论坛，聚焦 AI 辅助学习
 - **GSAI 2024**（线上）— 报告多智能体 AI 教学系统研究
@@ -159,6 +160,7 @@ My work sits at the intersection of **academic research** and **product engineer
 
 ### 🎓 Academic Activities
 
+- **1st Joint Symposium on Emerging Technologies and Future Talent** (EdUHK, May 2025) — Co-hosted by Harvard, Stanford, and HK EdU; presented research in parallel forum
 - **GCCCE 2024** (Chongqing) — Organized *LLM in Education* workshop; presented paper; built workshop website
 - **WAC 2024** (ECNU) — Co-organized education sub-forum on AI-assisted learning
 - **GSAI 2024** (Online) — Presented research on multi-agent AI teaching systems
